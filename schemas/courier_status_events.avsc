@@ -1,0 +1,81 @@
+{
+  "type": "record",
+  "name": "CourierStatusEvent",
+  "namespace": "food.delivery",
+  "doc": "Courier availability + location + status events",
+  "fields": [
+    {
+      "name": "schema_version",
+      "type": "string",
+      "default": "1.0"
+    },
+    {
+      "name": "event_id",
+      "type": "string"
+    },
+    {
+      "name": "courier_id",
+      "type": "string"
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "CourierEventType",
+        "symbols": [
+          "ONLINE",
+          "OFFLINE",
+          "LOCATION",
+          "ASSIGNED",
+          "UNASSIGNED"
+        ]
+      }
+    },
+    {
+      "name": "event_time",
+      "type": "string"
+    },
+    {
+      "name": "ingestion_time",
+      "type": "string"
+    },
+    {
+      "name": "zone_id",
+      "type": "string"
+    },
+    {
+      "name": "lat",
+      "type": "float"
+    },
+    {
+      "name": "lon",
+      "type": "float"
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "CourierStatus",
+        "symbols": [
+          "IDLE",
+          "EN_ROUTE_TO_RESTAURANT",
+          "WAITING",
+          "EN_ROUTE_TO_CUSTOMER",
+          "OFFLINE"
+        ]
+      }
+    },
+    {
+      "name": "current_order_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "battery_pct",
+      "type": "int"
+    }
+  ]
+}

@@ -1,1 +1,97 @@
-
+{
+  "type": "record",
+  "name": "OrderLifecycleEvent",
+  "namespace": "food.delivery",
+  "doc": "Order lifecycle events for real-time food delivery analytics",
+  "fields": [
+    {
+      "name": "schema_version",
+      "type": "string",
+      "default": "1.0"
+    },
+    {
+      "name": "event_id",
+      "type": "string"
+    },
+    {
+      "name": "order_id",
+      "type": "string"
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "OrderEventType",
+        "symbols": [
+          "CREATED",
+          "ACCEPTED",
+          "PREP_STARTED",
+          "READY",
+          "PICKED_UP",
+          "DELIVERED",
+          "CANCELLED"
+        ]
+      }
+    },
+    {
+      "name": "event_time",
+      "type": "string"
+    },
+    {
+      "name": "ingestion_time",
+      "type": "string"
+    },
+    {
+      "name": "customer_id",
+      "type": "string"
+    },
+    {
+      "name": "restaurant_id",
+      "type": "string"
+    },
+    {
+      "name": "courier_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "zone_id",
+      "type": "string"
+    },
+    {
+      "name": "estimated_prep_min",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "estimated_delivery_min",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "total_amount_eur",
+      "type": "float"
+    },
+    {
+      "name": "promo_applied",
+      "type": "boolean"
+    },
+    {
+      "name": "cancel_reason",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}
