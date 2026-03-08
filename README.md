@@ -11,4 +11,14 @@ Members of Group 5:
 - Sofía Serantes
 - Tessa Correig
 - Rakan Hourani
+### Feed A: Order Lifecycle Events
+Captures every state transition an order goes through, from the moment a customer places it to final delivery or cancellation
+#### Schema Feed A
+CREATED → ACCEPTED → PREP_STARTED → READY → PICKED_UP → DELIVERED
+                                                        ↘ CANCELLED (any stage)
+#### Feed B: Courier Status/Location Events
+Captures the continuous status and location updates of couriers, emitted on every state change and periodically as location pings.
+#### Schema Feed B
+ONLINE (IDLE) → ASSIGNED → EN_ROUTE_TO_RESTAURANT → WAITING → EN_ROUTE_TO_CUSTOMER → IDLE
+                                                                                     ↘ OFFLINE
 
