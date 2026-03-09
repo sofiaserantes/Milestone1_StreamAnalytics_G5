@@ -18,18 +18,17 @@
 
 ## Project Overview
 
-On-demand food delivery platforms (e.g., Uber Eats, Glovo, Deliveroo) operate as real-time marketplaces: customers place orders, restaurants accept and prepare meals, couriers pick up and deliver, and the platform continuously optimises dispatch, ETAs, cancellations, promotions, and fraud prevention. These systems produce high-volume streaming data that must be turned into business value in real time.
+On demand food delivery platforms (e.g., Uber Eats, Glovo, Deliveroo) operate as real time marketplaces: customers place orders, restaurants accept and prepare meals, couriers pick up and deliver, and the platform continuously optimises dispatch, ETAs, cancellations, promotions, and fraud prevention. These systems produce high volume streaming data that must be turned into business value in real time.
 
-This repository implements **Milestone 1** of a four-milestone real-time analytics pipeline:
+This repository implements **Milestone 1** of a two milestone real time analytics pipeline:
 
 | Milestone | Scope | Technology |
 |---|---|---|
 | **M1 (this repo)** | Data feed design & generation | Python, AVRO, JSON |
-| M2 | Stream ingestion | Azure Event Hubs |
-| M3 | Stream processing | Spark Structured Streaming |
-| M4 | Storage & dashboard | Delta Lake, live visualisation |
+| M2 | Stream Analytics Implementation | Azure Event Hubs |
 
-The goal of M1 is to design and generate two synthetic streaming feeds that together capture the core operational dynamics of the platform, with schemas and edge cases purpose-built to support event-time processing, watermarks, and stream-stream joins in M3.
+
+The goal of the first milestone was to design and generate two synthetic streaming feeds that together capture the operational dynamics of the  delivery service platforms, with schemas and fields to support event time.
 
 ---
 ## Team Structure
@@ -51,13 +50,13 @@ The goal of M1 is to design and generate two synthetic streaming feeds that toge
 
 ### What it captures
 
-Every state transition an order goes through — from the moment a customer places it to final delivery or cancellation.
+Every state transition an order goes through: from the moment a customer places it to final delivery or cancellation.
 
 ### Why this feed is essential
 
 Order lifecycle events are the central operational record of any delivery platform. Without them it is impossible to know whether an order is pending, being prepared, in transit, or completed. Specifically, this feed:
 
-- Enables real-time customer-facing status updates and ETA recalculation
+- Enables real time customer facing status updates and ETA recalculation
 - Powers SLA monitoring (e.g., orders pending acceptance for more than 3 minutes)
 - Supports cancellation pattern detection and fraud prevention
 - Provides the financial record that triggers payment on `DELIVERED`
@@ -72,7 +71,7 @@ CREATED → ACCEPTED → PREP_STARTED → READY → PICKED_UP → DELIVERED
                                                        (any stage)
 ```
 
-`PREP_STARTED` may be skipped (missing-step edge case, 3% of orders). `PICKED_UP` may also be skipped (order jumps directly to `DELIVERED`). `CANCELLED` can follow `CREATED` or `ACCEPTED`.
+`PREP_STARTED` may be skipped (missing step edge case, 3% of orders). `PICKED_UP` may also be skipped (order jumps directly to `DELIVERED`). `CANCELLED` can follow `CREATED` or `ACCEPTED`.
 
 ### Schema — Feed A (`OrderLifecycleEvent`)
 
@@ -108,9 +107,9 @@ The continuous status and location updates of couriers — emitted on every stat
 
 Courier telemetry is the operational backbone of dispatch optimisation. Without a live view of courier positions and availability, the platform cannot route orders efficiently. Specifically, this feed:
 
-- Powers real-time courier assignment by proximity and availability
+- Powers real time courier assignment by proximity and availability
 - Enables route anomaly detection (e.g., courier not moving during `EN_ROUTE`)
-- Supports zone-level supply/demand balancing (available couriers vs. open orders)
+- Supports zone level supply/demand balancing (available couriers vs. open orders)
 - Provides the join keys (`courier_id`, `current_order_id`) needed to correlate with Feed A
 - Captures `battery_pct`, which can feed predictive offline alerts
 
@@ -175,7 +174,7 @@ Both schemas include a `schema_version` string field (default `"1.0"`). All opti
 
 ## Event-Time Processing & Late Data Handling
 
-### Dual-timestamp design
+### Dual timestamp design
 
 Every event in both feeds carries two timestamps:
 
@@ -244,9 +243,9 @@ The richest planned query joins both feeds on `order_id` / `current_order_id` wi
 ### Data generation
 
 - All timestamps are ISO 8601 UTC strings. No timezone conversion is applied.
-- `event_time` reflects the logical time the state transition occurred. `ingestion_time` is derived from `event_time` with a small random delay, or a larger delay for the 5% of late-event injections.
+- `event_time` reflects the logical time the state transition occurred. `ingestion_time` is derived from `event_time` with a small random delay, or a larger delay for the 5% of late event injections.
 - Order amounts are uniformly sampled between €8 and €55.
-- Courier GPS coordinates are jittered within ±800 m of each zone centroid using a simple degree-offset approximation (not geodesic-accurate, sufficient for synthetic data).
+- Courier GPS coordinates are jittered within ±800 m of each zone centroid using a simple degree offset approximation (not geodesic-accurate, sufficient for synthetic data).
 - The simulation period is **1 February 2026 to 1 March 2026**. A fixed random seed (`random.seed(7)`) ensures full reproducibility.
 - 4,000 total events are targeted per feed. Because each non-cancelled order produces approximately 6 events, the generator creates roughly 667 orders for Feed A and trims or extends to hit the 4,000 target exactly.
 
