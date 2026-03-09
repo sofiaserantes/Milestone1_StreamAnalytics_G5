@@ -110,10 +110,12 @@ IMPOSSIBLE_DURATION_PROB          = 0.01  # 1%  — negative or extreme duration
 COURIER_OFFLINE_MID_DELIVERY_PROB = 0.02  # 2%  — courier goes offline mid-delivery
 
 
-| Column 1 | Column 2 | Column 3 |
+| File     | Format   | Contents |
 |----------|----------|----------|
-| row 1    | data     | data     |
-| row 2    | data     | data     |
+|order_lifecycle_events.json |JSON array |All ~4,000 
+|order eventsorder_lifecycle_events.avro|AVRO binary |Same, in binary AVRO format
+|courier_status_events.json |JSON array |All ~4,000 courier events |
+courier_status_events.avroAVRO binarySame, in binary AVRO formatsample_order_lifecycle_events.jsonJSON arrayFirst 10 order eventssample_order_lifecycle_events.avroAVRO binaryFirst 10 order eventssample_courier_status_events.jsonJSON arrayFirst 10 courier eventssample_courier_status_events.avroAVRO binaryFirst 10 courier eventsorder_lifecycle_events.avscJSON (AVRO schema)Standalone schema for Feed Acourier_status_events.avscJSON (AVRO schema)Standalone schema for Feed B
 
 
 
