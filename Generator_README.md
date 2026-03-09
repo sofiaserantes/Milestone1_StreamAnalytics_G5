@@ -5,24 +5,24 @@ This document explains how to install, configure, and run the synthetic data gen
 ## Feed A
 OrderLifecycle
 
-Output: order_lifecycle_events.json/.avro
+- Output: order_lifecycle_events.json/.avro
 
-Events: 4,000
+- Events: 4,000
 
 ## Feed B
 CourierStatus
 
-Output: courier_status_events.json/.avro
+- Output: courier_status_events.json/.avro
 
-Events: 4,000
+- Events: 4,000
 
 ## Sample Files
 
 It also writes smaller sample files (first 10 events of each feed) for quick inspection:
 
-sample_order_lifecycle_events.json / .avro
+- sample_order_lifecycle_events.json / .avro
 
-sample_courier_status_events.json / .avro
+- sample_courier_status_events.json / .avro
 
 ## Requirements
 
