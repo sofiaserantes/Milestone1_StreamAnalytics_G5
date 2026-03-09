@@ -62,7 +62,7 @@ All output files are written to the current working directory. The script prints
 ## Configuration
 There are no CLI arguments. All parameters are defined as constants at the top of milestone1_generator.py and can be edited directly before running
 
-## Volume
+### Volume
 
 NUM_ORDER_EVENTS   = 4000   # total events in the order lifecycle stream
 
@@ -74,19 +74,19 @@ NUM_COURIERS       = 300
 
 NUM_CUSTOMERS      = 800
 
-## Time Window
+### Time Window
 
 START_DATE = datetime.datetime(2026, 2, 1, 0, 0, 0)
 
 END_DATE   = datetime.datetime(2026, 3, 1, 0, 0, 0)
 
-## Geographic zones
+### Geographic zones
 
 ZONES        = ["Z1_Center", "Z2_North", "Z3_South", "Z4_East", "Z5_West"]
 
 ZONE_WEIGHTS = [0.40, 0.18, 0.15, 0.14, 0.13]  # higher = more demand
 
-## Business Parameters
+### Business Parameters
 
 BASE_CANCEL_PROB   = 0.06    # baseline cancellation probability
 
@@ -96,7 +96,7 @@ PROMO_PROB         = 0.10    # chance of a promotional period
 
 WEEKEND_MULTIPLIER = 1.25    # extra demand on Sat/Sun
 
-## Edge case injection rates
+### Edge case injection rates
 These control how frequently intentional data quality issues are injected into the stream 
 
 DUPLICATE_EVENT_PROB              = 0.02  # 2%  — exact duplicate events
