@@ -108,3 +108,18 @@ MISSING_STEP_PROB                 = 0.03  # 3%  — orders with a missing lifecy
 IMPOSSIBLE_DURATION_PROB          = 0.01  # 1%  — negative or extreme durations
 
 COURIER_OFFLINE_MID_DELIVERY_PROB = 0.02  # 2%  — courier goes offline mid-delivery
+
+
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| row 1    | data     | data     |
+| row 2    | data     | data     |
+
+
+
+
+
+
+
+
+
