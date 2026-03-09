@@ -143,8 +143,8 @@ with open('sample_order_lifecycle_events.avro', 'rb') as f:
  ## Output file reference
 | File     | Format   | Contents |
 |----------|----------|----------|
-|order_lifecycle_events.json |JSON array |All 4,000 
-|order eventsorder_lifecycle_events.avro|AVRO binary |Same, in binary AVRO format
+|order_lifecycle_events.json |JSON array |All 4,000 order events
+|order_eventsorder_lifecycle_events.avro|AVRO binary |Same, in binary AVRO format
 |courier_status_events.json |JSON array |All 4,000 courier events |
 |courier_status_events.avro |AVRO binary |Same, in binary AVRO format
 |sample_order_lifecycle_events.json |JSON array |First 10 order events
