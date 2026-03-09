@@ -63,7 +63,7 @@ There are no CLI arguments. All parameters are defined as constants at the top o
 
 ### Volume
 
-NUM_ORDER_EVENTS   = 4000   # total events in the order lifecycle stream
+`NUM_ORDER_EVENTS   = 4000   # total events in the order lifecycle stream
 
 NUM_COURIER_EVENTS = 4000   # total events in the courier status stream
 
@@ -71,7 +71,7 @@ NUM_RESTAURANTS    = 120
 
 NUM_COURIERS       = 300
 
-NUM_CUSTOMERS      = 800
+NUM_CUSTOMERS      = 800`
 
 ### Time Window
 
