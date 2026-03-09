@@ -1,6 +1,6 @@
 # Generator Documentation
 
-`Milestone1.ipynb` is a Google Colab / Jupyter notebook that generates two synthetic streaming data feeds for the Real-Time Food Delivery Analytics Pipeline project. Running all cells produces 10 output files: full JSON and AVRO datasets for each feed, 10-event sample files for quick inspection, and standalone AVRO schema files.
+`Milestone1.ipynb` is a Google Colab / Jupyter notebook that generates two synthetic streaming data feeds for the Real Time Food Delivery Analytics Pipeline project. Running all cells produces 10 output files: full JSON and AVRO datasets for each feed, 10 event sample files for quick inspection, and standalone AVRO schema files.
 
 ---
 
@@ -51,7 +51,7 @@ If running locally outside Colab, install it manually first:
 pip install fastavro
 ```
 
-No other third-party libraries are required. The generator uses only `random`, `datetime`, `json`, and `collections` from the Python standard library.
+No other third party libraries are required. The generator uses only `random`, `datetime`, `json`, and `collections` from the Python standard library.
 
 ---
 
@@ -103,7 +103,7 @@ START_DATE = datetime.datetime(2026, 2, 1, 0, 0, 0)
 END_DATE   = datetime.datetime(2026, 3, 1, 0, 0, 0)
 ```
 
-All events have `event_time` values within this one-month window. Timestamps are ISO 8601 UTC strings.
+All events have `event_time` values within this one month window. Timestamps are ISO 8601 UTC strings.
 
 ### Geographic zones
 
@@ -122,7 +122,7 @@ DINNER_HOURS = list(range(19, 23))   # 19:00–22:00 — weight multiplier 2.8×
 WEEKEND_MULTIPLIER = 1.25            # applied on Saturday and Sunday
 ```
 
-Peak weighting is implemented via rejection sampling. Off-peak hours have a base weight of 1.0.
+Peak weighting is implemented via rejection sampling. Off peak hours have a base weight of 1.0.
 
 ### Business parameters
 
@@ -241,7 +241,7 @@ print(f'Late events (>2 min lag): {len(late)} out of {len(events)}')
 
 ---
 
-*Real-Time Food Delivery Analytics Pipeline — Stream Analytics Course, Group 5*
+*Real Time Food Delivery Analytics Pipeline — Stream Analytics Course, Group 5*
 
 
 
