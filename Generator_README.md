@@ -62,8 +62,8 @@ All output files will be written to the current working directory. The script pr
 There are no CLI arguments. All parameters are defined as constants at the top of milestone1_generator.py and can be edited directly before running
 
 ### Volume
-
-`NUM_ORDER_EVENTS   = 4000   # total events in the order lifecycle stream
+```python
+NUM_ORDER_EVENTS   = 4000   # total events in the order lifecycle stream
 
 NUM_COURIER_EVENTS = 4000   # total events in the courier status stream
 
@@ -72,7 +72,7 @@ NUM_RESTAURANTS    = 120
 NUM_COURIERS       = 300
 
 NUM_CUSTOMERS      = 800`
-
+```
 ### Time Window
 
 START_DATE = datetime.datetime(2026, 2, 1, 0, 0, 0)
