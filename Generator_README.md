@@ -97,7 +97,7 @@ PROMO_PROB         = 0.10    # chance of a promotional period
 WEEKEND_MULTIPLIER = 1.25    # extra demand on Sat/Sun
 ```
 ### Edge case injection rates
-These control how frequently intentional data quality issues are injected into the stream 
+These control how frequently intentional data quality issues are injected into the stream:
 ```python
 DUPLICATE_EVENT_PROB              = 0.02  # 2%  — exact duplicate events
 
