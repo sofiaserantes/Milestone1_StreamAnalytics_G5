@@ -33,7 +33,7 @@ fastavro for AVRO serialisation
 ## Install the dependency:
 
 pip install fastavro
-## How to run
+## How to run it
 
 cd generator
 
