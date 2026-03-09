@@ -72,7 +72,7 @@ NUM_RESTAURANTS    = 120
 
 NUM_COURIERS       = 300
 
-NUM_CUSTOMERS      = 800`
+NUM_CUSTOMERS      = 800
 ```
 ### Time Window
 ```python
@@ -109,6 +109,36 @@ IMPOSSIBLE_DURATION_PROB          = 0.01  # 1%  — negative or extreme duration
 
 COURIER_OFFLINE_MID_DELIVERY_PROB = 0.02  # 2%  — courier goes offline mid-delivery
 ```
+ ## How to verify the output
+
+ **Inspect a sample event (JSON):**
+```bash
+python -c "
+import json
+events = json.load(open('sample_order_lifecycle_events.json'))
+print(json.dumps(events[0], indent=2))
+"
+```
+
+**Count events by type:**
+```bash
+python -c "
+import json
+from collections import Counter
+events = json.load(open('order_lifecycle_events.json'))
+print(Counter(e['event_type'] for e in events))
+"
+```
+
+**Read the AVRO file:**
+```python
+from fastavro import reader
+with open('sample_order_lifecycle_events.avro', 'rb') as f:
+    for record in reader(f):
+        print(record)
+        break
+```
+
  ## Output file reference
 | File     | Format   | Contents |
 |----------|----------|----------|
